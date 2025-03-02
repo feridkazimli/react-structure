@@ -1,0 +1,3 @@
+echo 🚀 Pre Commit Run
+
+npx lint-staged
