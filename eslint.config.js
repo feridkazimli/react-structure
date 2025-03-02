@@ -12,7 +12,7 @@ export default tseslint.config(
     extends: [tseslint.configs.recommendedTypeChecked, ...tseslint.configs.recommended],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-			parser: pluginTypescriptEslint.parser,
+			parser: tseslint.parser,
       ecmaVersion: 6,
       globals: globals.browser,
 			sourceType: 'module',
@@ -79,5 +79,11 @@ export default tseslint.config(
       '@typescript-eslint/ban-ts-comment': 'warn',
     },
   },
+	{
+		files: ['vite.config.ts'],
+    rules: {
+      'import/order': 'off',
+    },
+	},
 	pluginPrettier
 )

@@ -1,7 +1,8 @@
 {
   "name": "react-structure",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "sideEffects": false,
   "type": "module",
   "moduleFileExtensions": [
     "web.js",
@@ -67,5 +68,8 @@
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",
     "vite-plugin-svgr": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

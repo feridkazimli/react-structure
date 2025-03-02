@@ -1,32 +1,32 @@
 import react from '@vitejs/plugin-react-swc'
-import { defineConfig, loadEnv } from 'vite'
 import { resolve } from 'node:path'
+import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 
 import { version } from './package.json'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
-	const env = loadEnv(mode, process.cwd(), '');
-	const port = Number(env.VITE_PORT) || 3000;
+	const env = loadEnv(mode, process.cwd(), '')
+	const port = Number(env.VITE_PORT) || 80
 
 	return {
 		server: {
-      port,
-      host: true,
-      strictPort: true,
-      allowedHosts: ['app.troya.dev'],
-    },
+			port,
+			host: true,
+			strictPort: true,
+			allowedHosts: ['troya.internal'],
+		},
 		preview: {
-      port,
-    },
+			port,
+		},
 		define: {
 			APP_ENV: JSON.stringify(env.APP_ENV),
 			APP_VERSION: JSON.stringify(version),
 		},
 		resolve: {
 			alias: {
-				'@': resolve(__dirname, 'src'),
+				'~': resolve(__dirname, 'src'),
 			},
 		},
 		build: {
@@ -45,22 +45,22 @@ export default defineConfig(({ mode }) => {
 			react(),
 
 			svgr({
-        include: '**/*.svg',
-        svgrOptions: {
-          plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
-          svgoConfig: {
-            plugins: [
-              {
-                name: 'prefixIds',
-                params: {
-                  prefixIds: false,
-                  prefixClassNames: false,
-                },
-              },
-            ],
-          },
-        },
-      }),
+				include: '**/*.svg',
+				svgrOptions: {
+					plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx'],
+					svgoConfig: {
+						plugins: [
+							{
+								name: 'prefixIds',
+								params: {
+									prefixIds: false,
+									prefixClassNames: false,
+								},
+							},
+						],
+					},
+				},
+			}),
 		],
 	}
 })
