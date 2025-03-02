@@ -7,8 +7,7 @@ const Confugration: UserConfig = {
   helpUrl:
     "https://github.com/conventional-changelog/commitlint/#what-is-commitlint",
   rules: {
-    //   TODO Add Scope Enum Here
-    // 'scope-enum': [2, 'always', ['yourscope', 'yourscope']],
+    // 'scope-enum': [2, 'always', ['core', 'build']],
     "type-enum": [
       2,
       "always",
