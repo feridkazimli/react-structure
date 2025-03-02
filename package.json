@@ -18,10 +18,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint --fix --ext .ts,.tsx ./src --cache --cache-location node_modules/.cache/.eslintcache --max-warnings=-1",
+    "lint": "eslint --fix --ext .ts,.tsx ./src --cache --cache-location \"node_modules/.cache/.eslintcache\" --max-warnings=-1",
     "prepare": "husky",
-    "preview": "vite preview",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
+    "preview": "vite preview"
   },
   "lint-staged": {
     "**/*.{jsx,ts,tsx}": [
