@@ -3,6 +3,7 @@
 To create a new branch, use the following Git alias command instead of Git's built-in branch creation features:
 
 ```sh
+git config --global alias.branch-create '!bash /path/react-structure/branch-create.sh'
 git branch-create
 ```
 
