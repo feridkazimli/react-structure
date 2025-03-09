@@ -1,3 +1,13 @@
+## Branch Creation
+
+To create a new branch, use the following Git alias command instead of Git's built-in branch creation features:
+
+```sh
+git branch-create
+```
+
+This command uses a custom script to create branches and should be used for all branch creation tasks.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
