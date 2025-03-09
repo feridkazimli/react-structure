@@ -1,3 +1,16 @@
 echo 🚀 Pre Commit Run
 
+# BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+# BRANCH_PATTERN="^(feat|bugfix|hotfix|refactor|test|docs|ci)/JIRA-[0-9]+$"
+
+# if [[ ! "$BRANCH_NAME" =~ $BRANCH_PATTERN ]]; then
+#    echo "💡 Use the following command to create a branch: git branch-create feat/JIRA-TASK_ID"
+#    echo "❌ Invalid branch name: '$BRANCH_NAME'"
+#    echo "Please format your branch name as: 'feat/JIRA-TASK_ID'"
+#    exit 1
+# fi
+
+# echo "✅ Branch name is valid: '$BRANCH_NAME'"
+
 npx lint-staged

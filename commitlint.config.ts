@@ -14,7 +14,7 @@ const Confugration: UserConfig = {
       [
         "feat",
         "bugfix",
-        "fix",
+        "hotfix",
         "docs",
         "refactor",
         "ci",
@@ -41,9 +41,9 @@ const Confugration: UserConfig = {
             title: "Features",
             emoji: "✨",
           },
-          fix: {
-            description: "A bug fix",
-            title: "Bug Fixes",
+          hotfix: {
+            description: "A hot fix",
+            title: "Hot Fixes",
             emoji: "🐛",
           },
           bugfix: {
