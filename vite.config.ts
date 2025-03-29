@@ -2,7 +2,7 @@ import react from '@vitejs/plugin-react-swc'
 import { resolve } from 'node:path'
 import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
-
+import tsconfigPaths from "vite-tsconfig-paths"
 import { version } from './package.json'
 
 // https://vite.dev/config/
@@ -27,6 +27,12 @@ export default defineConfig(({ mode }) => {
 		resolve: {
 			alias: {
 				'~': resolve(__dirname, 'src'),
+				'@app': resolve(__dirname, 'src/app'),
+				'@entities': resolve(__dirname, 'src/entities'),
+				'@features': resolve(__dirname, 'src/features'),
+				'@pages': resolve(__dirname, 'src/pages'),
+				'@shared': resolve(__dirname, 'src/shared'),
+				'@widgets': resolve(__dirname, 'src/widgets'),
 			},
 		},
 		build: {
@@ -43,7 +49,7 @@ export default defineConfig(({ mode }) => {
 		},
 		plugins: [
 			react(),
-
+			tsconfigPaths(),
 			svgr({
 				include: '**/*.svg',
 				svgrOptions: {

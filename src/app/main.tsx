@@ -1,15 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { scan } from 'react-scan'
 import React from 'react'
+import { SnackbarProvider } from 'notistack'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import * as Sentry from '@sentry/react'
-import { SnackbarProvider } from 'notistack'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'dayjs/locale/az'
+import { buildProviderTree } from '@shared/lib'
 
 import { ErrorBoundary } from '~/app/ErrorBoundary'
-import { buildProviderTree } from '~/shared/libs/core'
 
 const client = new QueryClient({
 	defaultOptions: {
