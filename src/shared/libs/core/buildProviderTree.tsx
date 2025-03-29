@@ -5,7 +5,6 @@ type ChildrenType = {
 	children: React.ReactNode
 }
 
-// Her elemanın kendi prop tipine sahip olmasını sağlamak için generik bir tuple tipi kullanıyoruz.
 export const buildProviderTree = <T extends readonly unknown[]>(
 	componentWithProps: [...{ [K in keyof T]: ProviderType<T[K]> }],
 ) => {

@@ -5,6 +5,7 @@ import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import * as Sentry from '@sentry/react'
+import { SnackbarProvider } from 'notistack'
 import 'dayjs/locale/az'
 
 import { ErrorBoundary } from '~/app/ErrorBoundary'
@@ -21,6 +22,7 @@ const client = new QueryClient({
 
 const ProviderTree = buildProviderTree([
 	[QueryClientProvider, { client }],
+	[SnackbarProvider, { autoHideDuration: 500, maxSnack: 3 }],
 	[ErrorBoundary, {}],
 ])
 

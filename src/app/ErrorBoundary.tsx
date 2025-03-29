@@ -1,4 +1,5 @@
 import { captureException, withScope } from '@sentry/react'
+import { enqueueSnackbar } from 'notistack'
 import { Component, ErrorInfo, ReactNode } from 'react'
 
 interface ErrorBoundaryProps {
@@ -15,6 +16,11 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps> {
 				scope.setExtra('digest', errorInfo.digest)
 			}
 			captureException(error)
+		})
+
+		enqueueSnackbar({
+			variant: 'error',
+			message: 'errrrrrrrrrrrrrrrrr',
 		})
 	}
 
