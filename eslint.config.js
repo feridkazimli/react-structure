@@ -5,6 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import pluginImport from 'eslint-plugin-import'
 import pluginPrettier from 'eslint-plugin-prettier/recommended'
+import pluginQuery from '@tanstack/eslint-plugin-query'
 
 export default tseslint.config(
   { ignores: ['**/dist/*', 'commitlint.config.ts'] },
@@ -85,5 +86,6 @@ export default tseslint.config(
       'import/order': 'off',
     },
 	},
+	pluginQuery.configs['flat/recommended'],
 	pluginPrettier
 )
