@@ -156,6 +156,17 @@ export default tseslint.config(
 								[
 									"shared",
 									{
+										"segment": "types"
+									}
+								]
+							],
+							"allow": "index.ts"
+						},
+						{
+							"target": [
+								[
+									"shared",
+									{
 										"segment": "ui" // ("ui"|"constants")
 									}
 								]

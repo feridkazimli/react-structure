@@ -7,9 +7,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import * as Sentry from '@sentry/react'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import 'dayjs/locale/az'
+import {
+	BrowserRouter,
+  createRoutesFromChildren,
+  matchRoutes,
+  useLocation,
+  useNavigationType,
+} from "react-router";
 import { buildProviderTree } from '@shared/lib'
 
 import { ErrorBoundary } from '~/app/ErrorBoundary'
+import Router from '@app/Router'
 
 const client = new QueryClient({
 	defaultOptions: {
@@ -24,11 +32,26 @@ const ProviderTree = buildProviderTree([
 	[QueryClientProvider, { client }],
 	[SnackbarProvider, { autoHideDuration: 500, maxSnack: 3 }],
 	[ErrorBoundary, {}],
+	[BrowserRouter, { basename: import.meta.env.BASE_URL }],
 ])
 
 scan({
 	enabled: true,
 })
+
+Sentry.init({
+  dsn: "http://b4b265ad85d04b14b47d4810f93511fb@localhost:9000/1",
+  integrations: [
+    Sentry.reactRouterV7BrowserTracingIntegration({
+      useEffect: React.useEffect,
+      useLocation,
+      useNavigationType,
+      createRoutesFromChildren,
+      matchRoutes,
+    }),
+  ],
+  tracesSampleRate: 1.0,
+});
 
 const rootElement = document.getElementById('root')
 if (rootElement) {
@@ -45,7 +68,7 @@ if (rootElement) {
 	}).render(
 		<React.StrictMode>
 			<ProviderTree>
-				<>test</>
+				<Router />
 				<ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" />
 			</ProviderTree>
 		</React.StrictMode>,
