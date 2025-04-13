@@ -1,0 +1,89 @@
+{
+  "name": "react-structure",
+  "private": true,
+  "version": "1.0.0",
+  "sideEffects": false,
+  "type": "module",
+  "moduleFileExtensions": [
+    "web.js",
+    "js",
+    "web.ts",
+    "ts",
+    "web.tsx",
+    "tsx",
+    "json",
+    "web.jsx",
+    "jsx",
+    "node"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint --fix --ext .ts,.tsx ./src --cache --cache-location \"node_modules/.cache/.eslintcache\" --max-warnings=-1",
+    "prepare": "husky",
+    "preview": "vite preview"
+  },
+  "lint-staged": {
+    "**/*.{jsx,ts,tsx}": [
+      "npm run lint"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "dependencies": {
+    "@sentry/react": "^9.10.1",
+    "@tanstack/react-query": "^5.69.3",
+    "@tanstack/react-query-devtools": "^5.70.0",
+    "dayjs": "^1.11.13",
+    "notistack": "^3.0.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+<<<<<<< HEAD
+    "react-router": "^7.5.0",
+=======
+>>>>>>> d6e942680f4e297951932a2ecc58c548cc61d19b
+    "react-scan": "^0.3.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/cz-commitlint": "^19.6.1",
+    "@commitlint/format": "^19.5.0",
+    "@commitlint/prompt-cli": "^19.7.1",
+    "@eslint/compat": "^1.2.7",
+    "@eslint/js": "^9.21.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@tanstack/eslint-plugin-query": "^5.68.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "commitizen": "^4.3.1",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-import-resolver-typescript": "^4.2.7",
+    "eslint-plugin-boundaries": "^5.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.2",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0",
+    "vite-plugin-svgr": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

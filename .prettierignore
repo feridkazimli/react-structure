@@ -1,0 +1,5 @@
+node_modules
+dist
+globals.d.ts
+*.config.ts
+*.config.js
