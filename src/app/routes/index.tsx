@@ -20,7 +20,7 @@ const routes: RouteObjectType[] = [
 	{
 		path: '/test-2',
 		element: <div>Test Permissions Page</div>,
-		permissions: ['addonsCreate'],
+		permissions: ['admin'],
 		private: true,
 	},
 ]
