@@ -5,7 +5,23 @@ const routes: RouteObjectType[] = [
 	{
 		path: HOME_ROUTE,
 		element: <div>Home</div>,
+		private: true,
+	},
+	{
+		path: '/auth',
+		element: <div>Auth Page</div>,
 		onlyPublic: true,
+	},
+	{
+		path: '/test-1',
+		element: <div>Test Private Page</div>,
+		private: true,
+	},
+	{
+		path: '/test-2',
+		element: <div>Test Permissions Page</div>,
+		permissions: ['addonsCreate'],
+		private: true,
 	},
 ]
 
