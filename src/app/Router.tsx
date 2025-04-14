@@ -1,8 +1,10 @@
 import { wrapUseRoutesV7 } from '@sentry/react'
 import React, { type ReactNode } from 'react'
-import { type RouteObject, useRoutes } from 'react-router'
+import { useLocation, useRoutes } from 'react-router'
+import type { RouteObject } from 'react-router'
 
 import routes from '@app/routes'
+import { useLocationHistory } from '@shared/lib'
 import type { RouteObjectType } from '@shared/types'
 
 interface PageWrapperProps {
@@ -10,7 +12,16 @@ interface PageWrapperProps {
 	children: ReactNode
 }
 
-function PageWrapper({ children }: PageWrapperProps) {
+function PageWrapper({ children, routeConfig }: PageWrapperProps) {
+	const location = useLocation()
+	const { onRouteEnter } = useLocationHistory()
+
+	React.useEffect(() => {
+		if (onRouteEnter) {
+			onRouteEnter(routeConfig, location)
+		}
+	}, [location, routeConfig, onRouteEnter])
+
 	return <>{children}</>
 }
 
