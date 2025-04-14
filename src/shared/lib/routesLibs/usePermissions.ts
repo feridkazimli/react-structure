@@ -8,9 +8,10 @@ export const usePermissions: TUsePermissionsProps = () => {
 	// const { currentMembership } = useCurrentUser()
 	const currentMembership: { permissions: PermissionsType } = {
 		permissions: {
-			addonsCreate: true,
-			addonsDelete: false,
-			addonsUpdate: false,
+			admin: true,
+			director: false,
+			employee: false,
+			superAdmin: false,
 		},
 	}
 
