@@ -82,7 +82,7 @@ export default tseslint.config(
 				{ allowConstantExport: true },
 			],
 			'no-alert': 'error',
-			'no-console': 'error',
+			'no-console': 'off',
 			eqeqeq: 'error',
 			'no-else-return': 'warn',
 			'no-unused-vars': 'off',
