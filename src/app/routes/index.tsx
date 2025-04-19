@@ -1,10 +1,14 @@
+import React from 'react'
+
 import { HOME_ROUTE } from '@shared/constants'
 import type { RouteObjectType } from '@shared/types'
+
+const HomePage = React.lazy(() => import('@pages/home/HomePage'))
 
 const routes: RouteObjectType[] = [
 	{
 		path: HOME_ROUTE,
-		element: <div>Home</div>,
+		element: <HomePage />,
 		private: true,
 	},
 	{
@@ -20,7 +24,7 @@ const routes: RouteObjectType[] = [
 	{
 		path: '/test-2',
 		element: <div>Test Permissions Page</div>,
-		permissions: ['addonsCreate'],
+		permissions: ['isAdmin'],
 		private: true,
 	},
 ]

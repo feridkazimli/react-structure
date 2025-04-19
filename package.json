@@ -34,6 +34,8 @@
     }
   },
   "dependencies": {
+    "@casl/ability": "^6.7.3",
+    "@casl/react": "^5.0.0",
     "@sentry/react": "^9.10.1",
     "@tanstack/react-query": "^5.69.3",
     "@tanstack/react-query-devtools": "^5.70.0",

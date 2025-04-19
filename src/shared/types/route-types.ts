@@ -1,9 +1,12 @@
 import type { RouteObject } from 'react-router'
 
 export type PermissionsType = {
-	addonsCreate: boolean
-	addonsDelete: boolean
-	addonsUpdate: boolean
+	isSuperAdmin: boolean
+	isAdmin: boolean
+	isDirector: boolean
+	isEmployee: boolean
+	isAsanSigner: boolean
+	isSigner: boolean
 }
 
 export interface RouteObjectType extends Omit<RouteObject, 'children' | 'path'> {

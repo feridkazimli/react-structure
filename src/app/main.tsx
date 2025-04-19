@@ -18,6 +18,8 @@ import { buildProviderTree } from '@shared/lib'
 
 import { ErrorBoundary } from '~/app/ErrorBoundary'
 import Router from '@app/Router'
+import { type User } from './accessMenager/ability'
+import { AbilityProvider } from './accessMenager/AbilityContext'
 
 const client = new QueryClient({
 	defaultOptions: {
@@ -28,10 +30,29 @@ const client = new QueryClient({
 	},
 })
 
+const user: User = { id: 1, role: 'member', email: 'ffff@2df', password: '123456', permissions: [
+	{
+		action: 'invite',
+		subject: 'User',
+	},
+	{
+		action: 'update',
+		subject: 'User',
+		conditions: {
+			role: 'admin',
+		},
+	},
+] }
+
+// const ability = defineAbilityFor(user)
+// const ability = createAppAbility(user.permissions)
+// console.log("🚀 ~ ability ~ ability:", ability)
+
 const ProviderTree = buildProviderTree([
 	[QueryClientProvider, { client }],
 	[SnackbarProvider, { autoHideDuration: 500, maxSnack: 3 }],
 	[ErrorBoundary, {}],
+	[AbilityProvider, { user }],
 	[BrowserRouter, { basename: import.meta.env.BASE_URL }],
 ])
 
@@ -58,7 +79,7 @@ if (rootElement) {
 	createRoot(rootElement, {
 		// Callback called when an error is thrown and not caught by an ErrorBoundary.
 		onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
-			// eslint-disable-next-line no-console
+
 			console.warn('Uncaught error', error, errorInfo.componentStack)
 		}),
 		// Callback called when React catches an error in an ErrorBoundary.
