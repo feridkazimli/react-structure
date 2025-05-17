@@ -1,5 +1,5 @@
 import { subject } from '@casl/ability'
-import React, { useContext, useMemo } from 'react'
+import React, { useMemo } from 'react'
 
 import { type AppAbilities, type AppAbility, createAppAbility, type User } from './ability'
 
@@ -37,14 +37,4 @@ export function AbilityProvider({ user, children }: AbilityProviderProps) {
 	}
 
 	return <AbilityContext.Provider value={defineAbility}>{children}</AbilityContext.Provider>
-}
-
-export function useAbility() {
-	const ability = useContext(AbilityContext)
-
-	if (ability === undefined) {
-		throw new Error('useAbility must be used within an AbilityProvider')
-	}
-
-	return ability
 }
