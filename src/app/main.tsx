@@ -18,8 +18,10 @@ import { buildProviderTree } from '@shared/lib'
 
 import { ErrorBoundary } from '~/app/ErrorBoundary'
 import Router from '@app/Router'
-import { type User } from './accessMenager/ability'
-import { AbilityProvider } from './accessMenager/AbilityContext'
+import { type User } from '@shared/lib/accessMenager'
+import { AbilityProvider } from '@shared/lib/accessMenager'
+
+import permissions from './permissions.json'
 
 const client = new QueryClient({
 	defaultOptions: {
@@ -30,19 +32,30 @@ const client = new QueryClient({
 	},
 })
 
-const user: User = { id: 1, role: 'member', email: 'ffff@2df', password: '123456', permissions: [
-	{
-		action: 'invite',
-		subject: 'User',
-	},
-	{
-		action: 'update',
-		subject: 'User',
-		conditions: {
-			role: 'admin',
-		},
-	},
-] }
+// const permissions = [
+// 	{
+// 		action: 'invite',
+// 		subject: 'User',
+// 	},
+// 	{
+// 		action: 'update',
+// 		subject: 'User',
+// 		conditions: {
+// 			role: 'admin',
+// 		},
+// 	},
+// 	{
+// 		action: 'sign',
+// 		subject: 'User',
+// 		conditions: {
+// 			customerNo: {
+// 				$in: [1000111, 1001],
+// 			},
+// 		},
+// 	},
+// ]
+
+const user: User = { id: 1, customerNo: 1000111, role: 'admin', email: 'ffff@2df', password: '123456', permissions }
 
 // const ability = defineAbilityFor(user)
 // const ability = createAppAbility(user.permissions)

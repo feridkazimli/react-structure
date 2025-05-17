@@ -12,7 +12,20 @@ interface AbilityProviderProps {
 }
 
 export function AbilityProvider({ user, children }: AbilityProviderProps) {
-	const ability = useMemo(() => createAppAbility(user.permissions), [user])
+	const ability = useMemo(() => {
+		const currentPage = 'User'
+		const globalPermissions = user.permissions.global || []
+		const modulePermissionsWithouteRole = user.permissions.modules[currentPage]?.['all'] || []
+		const modulePermissions = user.permissions.modules[currentPage]?.[user.role] || []
+
+		const mergedPermissions = [
+			...globalPermissions,
+			...modulePermissionsWithouteRole,
+			...modulePermissions,
+		]
+
+		return createAppAbility(mergedPermissions)
+	}, [user])
 
 	const defineAbility = {
 		can: (action: AppAbilities[0], _subject: AppAbilities[1]) => {
