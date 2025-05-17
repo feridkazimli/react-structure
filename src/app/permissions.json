@@ -1,0 +1,151 @@
+{
+  "global": [
+    { "action": "read", "subject": "all" },
+    { "action": "invite", "subject": "User", "conditions": { "loginType": { "$eq": "password" } } }
+  ],
+  "modules": {
+    "User": {
+      "all": [
+        { "action": "read", "subject": "User" },
+        {
+          "action": "invite",
+          "subject": "User",
+          "conditions": { "customerNo": { "$eq": "{{user.customerNo}}" } }
+        }
+      ],
+      "admin": [
+        { "action": "create", "subject": "User" },
+        { "action": "update", "subject": "User" },
+        { "action": "sign", "subject": "User" },
+        { "action": "delete", "subject": "User", "conditions": { "customerNo": { "$in": [1000111, 1001] } } }
+      ],
+      "editor": [
+        { "action": "read", "subject": "User" },
+        { "action": "update", "subject": "User", "conditions": { "role": { "$ne": "admin" } } },
+        {
+          "action": "invite",
+          "subject": "User",
+          "conditions": { "role": { "$in": ["member", "guest"] } }
+        }
+      ],
+      "member": [
+        {
+          "action": "read",
+          "subject": "User",
+          "conditions": { "customerNo": { "$eq": "{{user.customerNo}}" } }
+        }
+      ],
+      "guest": [],
+      "signer": [{ "action": "sign", "subject": "User", "conditions": { "needsSignature": true } }],
+      "approver": [
+        { "action": "approve", "subject": "User", "conditions": { "status": "pendingApproval" } }
+      ]
+    },
+    "Customer": {
+      "admin": [
+        { "action": "create", "subject": "Customer" },
+        { "action": "read", "subject": "Customer" },
+        { "action": "update", "subject": "Customer" },
+        { "action": "delete", "subject": "Customer" }
+      ],
+      "editor": [
+        { "action": "read", "subject": "Customer" },
+        { "action": "update", "subject": "Customer", "conditions": { "tier": { "$gt": 1 } } }
+      ],
+      "member": [
+        {
+          "action": "read",
+          "subject": "Customer",
+          "conditions": {
+            "$or": [{ "customerNo": { "$eq": 1000 } }, { "customerNo": { "$eq": 1001 } }]
+          }
+        }
+      ],
+      "guest": [],
+      "signer": [
+        { "action": "sign", "subject": "Customer", "conditions": { "contractSigned": false } }
+      ],
+      "approver": [
+        {
+          "action": "approve",
+          "subject": "Customer",
+          "conditions": { "creditScore": { "$lt": 700 } }
+        }
+      ]
+    },
+
+    "Document": {
+      "admin": [
+        { "action": "create", "subject": "Document" },
+        { "action": "read", "subject": "Document" },
+        { "action": "update", "subject": "Document" },
+        { "action": "delete", "subject": "Document" },
+        { "action": "sign", "subject": "Document" },
+        { "action": "approve", "subject": "Document" }
+      ],
+      "editor": [
+        { "action": "read", "subject": "Document" },
+        { "action": "sign", "subject": "Document", "conditions": { "status": { "$eq": "draft" } } }
+      ],
+      "member": [
+        {
+          "action": "read",
+          "subject": "Document",
+          "conditions": { "ownerId": { "$eq": "user.id" } }
+        }
+      ],
+      "guest": [],
+      "signer": [
+        {
+          "action": "sign",
+          "subject": "Document",
+          "conditions": { "$and": [{ "status": "pending" }, { "requiresSignature": true }] }
+        }
+      ],
+      "approver": [
+        {
+          "action": "approve",
+          "subject": "Document",
+          "conditions": { "status": { "$in": ["signed", "reviewed"] } }
+        }
+      ]
+    },
+
+    "Contract": {
+      "admin": [
+        { "action": "create", "subject": "Contract" },
+        { "action": "read", "subject": "Contract" },
+        { "action": "update", "subject": "Contract" },
+        { "action": "delete", "subject": "Contract" },
+        { "action": "sign", "subject": "Contract" },
+        { "action": "approve", "subject": "Contract" }
+      ],
+      "editor": [
+        { "action": "read", "subject": "Contract" },
+        {
+          "action": "update",
+          "subject": "Contract",
+          "conditions": { "effectiveDate": { "$gte": "2025-01-01" } }
+        }
+      ],
+      "member": [
+        {
+          "action": "read",
+          "subject": "Contract",
+          "conditions": { "customerNo": { "$eq": "{{user.customerNo}}" } }
+        }
+      ],
+      "guest": [],
+      "signer": [
+        { "action": "sign", "subject": "Contract", "conditions": { "status": "awaitingSignature" } }
+      ],
+      "approver": [
+        {
+          "action": "approve",
+          "subject": "Contract",
+          "conditions": { "reviewedBy": { "$eq": "{{user.id}}" } }
+        }
+      ]
+    }
+  }
+}
