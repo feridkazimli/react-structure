@@ -4,8 +4,14 @@ import { defineConfig, loadEnv } from 'vite'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from "vite-tsconfig-paths"
 import { version } from './package.json'
+import { createHtmlPlugin } from 'vite-plugin-html'
+import topLevelAwait from 'vite-plugin-top-level-await'
 
-// https://vite.dev/config/
+const titles: Record<string, string> = {
+  development: 'React Structure - Local',
+  production: 'React Structure',
+}
+
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '')
 	const port = Number(env.VITE_PORT) || 80
@@ -50,6 +56,15 @@ export default defineConfig(({ mode }) => {
 		plugins: [
 			react(),
 			tsconfigPaths(),
+			topLevelAwait(),
+			createHtmlPlugin({
+        inject: {
+          data: {
+            title: titles[env.APP_ENV] || titles.production,
+            // favicon: icons[env.APP_ENV] || icons.production,
+          },
+        },
+      }),
 			svgr({
 				include: '**/*.svg',
 				svgrOptions: {
